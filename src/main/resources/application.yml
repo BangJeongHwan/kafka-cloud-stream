@@ -1,0 +1,21 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,bindings
+
+spring:
+  application:
+    name: kafka-cloud-stream
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9093
+      function:
+        definition: basicConsumer
+
+      bindings:
+        basicConsumer-in-0:
+          destination: kafka.cloud.stream.v1
+          group: ${spring.application.name}-1
